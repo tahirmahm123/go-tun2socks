@@ -19,13 +19,20 @@ type UDPConnHandler interface {
 	DidReceiveTo(conn UDPConn, data []byte, addr net.Addr) error
 }
 
-var tcpConnHandler TCPConnHandler
-var udpConnHandler UDPConnHandler
+var tcpConnHandler TCPConnHandler = nil
+var udpConnHandler UDPConnHandler = nil
 
 func RegisterTCPConnHandler(h TCPConnHandler) {
 	tcpConnHandler = h
 }
+func UnregisterTCPConnHandler() {
+	tcpConnHandler = nil
+}
 
 func RegisterUDPConnHandler(h UDPConnHandler) {
 	udpConnHandler = h
+}
+
+func UnregisterUDPConnHandler() {
+	udpConnHandler = nil
 }

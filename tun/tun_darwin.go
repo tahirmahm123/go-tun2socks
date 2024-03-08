@@ -31,13 +31,11 @@ func isIPv6(ip net.IP) bool {
 }
 
 func OpenTunDevice(name, addr, gw, mask string, dnsServers []string) (io.ReadWriteCloser, error) {
-	tunDev, err := water.New(water.Config{
+	config := water.Config{
 		DeviceType: water.TUN,
-		PlatformSpecificParams: water.PlatformSpecificParams{
-			Name:   name,
-			Driver: water.MacOSDriverSystem,
-		},
-	})
+	}
+	config.Name = name
+	tunDev, err := water.New(config)
 	if err != nil {
 		return nil, err
 	}

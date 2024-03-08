@@ -9,11 +9,11 @@ import (
 )
 
 type icmpFilter struct {
-	writer io.Writer
+	writer io.WriteCloser
 	delay  int
 }
 
-func NewICMPFilter(w io.Writer, delay int) Filter {
+func NewICMPFilter(w io.WriteCloser, delay int) Filter {
 	return &icmpFilter{writer: w, delay: delay}
 }
 
@@ -32,4 +32,7 @@ func (w *icmpFilter) Write(buf []byte) (int, error) {
 	} else {
 		return w.writer.Write(buf)
 	}
+}
+func (w *icmpFilter) Close() (error) {
+	return w.writer.Close()
 }

@@ -11,10 +11,24 @@ const (
 )
 
 type Logger interface {
-	SetLevel(level LogLevel)
-	Debugf(msg string, args ...interface{})
-	Infof(msg string, args ...interface{})
-	Warnf(msg string, args ...interface{})
-	Errorf(msg string, args ...interface{})
-	Fatalf(msg string, args ...interface{})
+	// Info - Log info message
+	Info(v ...interface{})
+
+	// Debug - Log Debug message
+	Debug(v ...interface{})
+
+	// Warning - Log Warning message
+	Warning(v ...interface{})
+
+	// Trace - Log Trace message
+	Trace(v ...interface{})
+
+	// Error - Log Error message
+	Error(v ...interface{})
+
+	// ErrorTrace - Log error with trace
+	ErrorTrace(e error)
+
+	// Panic - Log error with trace
+	Panic(v ...interface{})
 }

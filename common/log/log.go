@@ -6,38 +6,32 @@ func RegisterLogger(l Logger) {
 	logger = l
 }
 
-func SetLevel(level LogLevel) {
+func Debugf(args ...interface{}) {
 	if logger != nil {
-		logger.SetLevel(level)
+		logger.Debug(args...)
 	}
 }
 
-func Debugf(msg string, args ...interface{}) {
+func Infof(args ...interface{}) {
 	if logger != nil {
-		logger.Debugf(msg, args...)
+		logger.Info(args...)
 	}
 }
 
-func Infof(msg string, args ...interface{}) {
+func Warnf(args ...interface{}) {
 	if logger != nil {
-		logger.Infof(msg, args...)
+		logger.Warning(args...)
 	}
 }
 
-func Warnf(msg string, args ...interface{}) {
+func Errorf(args ...interface{}) {
 	if logger != nil {
-		logger.Warnf(msg, args...)
+		logger.Error(args...)
 	}
 }
 
-func Errorf(msg string, args ...interface{}) {
+func Fatalf(args ...interface{}) {
 	if logger != nil {
-		logger.Errorf(msg, args...)
-	}
-}
-
-func Fatalf(msg string, args ...interface{}) {
-	if logger != nil {
-		logger.Fatalf(msg, args...)
+		logger.Panic(args...)
 	}
 }
